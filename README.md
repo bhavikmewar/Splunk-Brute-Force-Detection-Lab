@@ -105,5 +105,8 @@ I verified the attack activity in multiple places:
 - How Windows authentication logs are structured
 - How to write SPL queries for detection
 - How brute force activity appears in logs
+
+# What to do next
+- Detection 3: Detect privilage escalation
 - How time-based aggregation improves detection accuracy
 - How to build and segment a small virtual lab environment
