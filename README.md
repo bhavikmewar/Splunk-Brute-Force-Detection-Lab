@@ -108,5 +108,4 @@ I verified the attack activity in multiple places:
 
 # What to do next
 - Detection 3: Detect privilage escalation
-- How time-based aggregation improves detection accuracy
-- How to build and segment a small virtual lab environment
+
