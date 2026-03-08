@@ -100,6 +100,26 @@ I verified the attack activity in multiple places:
 
 *Figure 7: Raw Windows Security logs successfully ingested into Splunk (WinEventLog:Security)*
 
+# Remediation
+After detecting the brute force activity, several response actions would be recommended to contain the attack and strengthen authentication security
+
+# Immediate Reponse
+- Block the attacker IP address at the firewall or enpoint level to prevent further login attempts
+- Temporarily disable or lock the targeted user account if repeated authentication failures occur
+- Review authentication logs for additional suspicious activity from the same source IP
+- Reset credentials for the targeted account to ensure the password has not been compromised
+
+# Security Hardening
+- Implement account lockdown policies to automatically lock accounts after a defined number of failed login attempts
+- Enable Multi-Factor Authentication (MFA) for remote access services such as RDP
+- Restrict RDP access to trusted internal networks or require VPN access
+- Disable unnecessary remote services to reduce attack surface
+
+# Monitoring Improvements
+- Configure Splunk alerts to trigger when excessive failed logon attempts (Event ID 4625) occur within a short time window
+- Build dashboard to monitor authentication patterns and highlight abnormal login behavior
+- Create correlation searches that detect brute force patterns across multiple accounts or systems
+
 # What I learned
 - How to configure Splunk Universal Forwarder
 - How Windows authentication logs are structured
