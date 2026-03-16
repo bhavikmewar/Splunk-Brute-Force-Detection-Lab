@@ -3,6 +3,8 @@
 
 In this lab, I built a small SIEM environment using Splunk to detect brute force login attempts against a Windows 10 machine.
 
+A
+
 
 I created three virtual machines (Ubuntu Linux, Windows 10, and Kali Linux).
 
@@ -64,6 +66,8 @@ This helped confirm:
 ![Brute Force Detection](images/detectionquery.png)
 
 *Figure 3: SPL search results displaying multiple failed logon attempts (Event ID 4625) from a single source IP*
+- *index=wineventlog EventCode=4625* - tells splunk search in the wineventlog index and only show Event ID 4625
+- 
 
 # Behavioral Visualization
 To identify burst patterns, I analyzed failed logins over time to see spikes during the attack window.
