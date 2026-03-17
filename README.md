@@ -19,7 +19,7 @@ The goal was to understand how brute force attacks appear in logs and how a SOC 
   Log Flow:
 Windows Security Logs -> Splunk Universal Forwarder -> Splunk Server (Port 9997) -> Detection Searches -> Alerts + Dashboard
 
-Logs from the Windows 10 system were forwarded to Splunk using the Universal Forwarder for analysis
+Logs from the Windows 10 system were forwarded to Splunk using the Universal Forwarder for analysis.
 
 # Lab Architecture Diagram
 ![Splunk Lab Architecture](images/architecture.png)
@@ -125,7 +125,7 @@ After detecting the brute force activity, the following actions can help reduce 
 - Restrict RDP access to trusted internal networks or require VPN access
 - Disable unnecessary remote services to reduce attack surface
 
-# Monitoring Improvements
+## Monitoring Improvements
 - Configure Splunk alerts to trigger when excessive failed logon attempts (Event ID 4625) occur within a short time window
 - Build dashboard to monitor authentication patterns and highlight abnormal login behavior
 - Create correlation searches that detect brute force patterns across multiple accounts or systems
