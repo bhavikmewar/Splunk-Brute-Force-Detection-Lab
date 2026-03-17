@@ -77,8 +77,17 @@ This helped confirm:
 
 
 *Figure 3: SPL search results displaying multiple failed logon attempts (Event ID 4625) from a single source IP*
-- *index=wineventlog EventCode=4625* - tells splunk search in the wineventlog index and only show Event ID 4625
-- 
+
+*index=wineventlog EventCode=4625*
+- Looks in your main index
+- Filters for Windows Security logs
+- EventCode = 4625 means failed login attempts
+
+* | stats count as failures by Account_Name *
+- Groups logs by username
+- Counts how many failed attempts each user has
+- Renames it to failures
+
 
 # Behavioral Visualization
 To identify burst patterns, I analyzed failed logins over time to see spikes during the attack window.
