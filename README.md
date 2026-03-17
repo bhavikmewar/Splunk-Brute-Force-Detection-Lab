@@ -82,7 +82,7 @@ This helped confirm:
 - Looks in your main index
 - Filters for Windows Security logs
 - EventCode = 4625 means failed login attempts
-  * | stats count as failures by Account_Name *
+*| stats count as failures by Account_Name*
 - Groups logs by username
 - Counts how many failed attempts each user has
 - Renames it to failures
