@@ -88,6 +88,17 @@ This helped confirm:
 - Counts how many failed attempts each user has
 - Renames it to failures
 
+*| where failures > 10*
+- Only shows accounts with more than 10 failed logins
+
+*| sort - failures*
+- Sorts from highest to lowest failures
+
+*| fields Account_Name failures
+- Only displays:
+   - Username
+   - Number of failures
+
 
 # Behavioral Visualization
 To identify burst patterns, I analyzed failed logins over time to see spikes during the attack window.
