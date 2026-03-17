@@ -55,10 +55,10 @@ RDP kali command used:
 *Figure 2: Repeated RDP authentication attempts generated from the Kali Linux VM to simulate brute force behavior*
 
 *I used xfreerdp3 from Kali Linux to attempt a Remote Desktop Protocol (RDP) connection to target a windows machine.* 
-- /v: - the target IP address*
-- /u: - a username*
-- Then manually entered a wrong password when prompted*
-*The system attempted to authenticate using Kerberos (port 88)*
+- /v: - the target IP address
+- /u: - a username
+- Then manually entered a wrong password when prompted
+*The system attempted to authenticate using Kerberos (port 88)
 
 # Detection 1 - Multiple Failed Logins
 
