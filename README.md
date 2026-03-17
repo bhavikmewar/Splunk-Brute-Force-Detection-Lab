@@ -1,5 +1,6 @@
 # Splunk Brute Force Detection Lab
 
+This project demonstrates how security monitoring can identify unauthorized access attempts and support risk detection in enterprise environments
 
 In this lab, I built a small SIEM environment using Splunk to detect brute force login attempts against a Windows 10 machine.
 
@@ -18,7 +19,7 @@ The goal was to understand how brute force attacks appear in logs and how a SOC 
   Log Flow:
 Windows Security Logs -> Splunk Universal Forwarder -> Splunk Server (Port 9997) -> Detection Searches -> Alerts + Dashboard
 
-*Windows records authentication activity in its security logs. The Splunk Universal Forwarder collects those logs and sends them to the Splunk server, where they can be searched and analyzed to detect suspicous behavior*
+Logs from Windows 10 system were forwarded to Splunk using the Universal Forwarder for analyis
 
 # Lab Architecture Diagram
 ![Splunk Lab Architecture](images/architecture.png)
@@ -75,29 +76,8 @@ This helped confirm:
 # SPL Brute Force Detection
 ![Brute Force Detection](images/detectionquery.png)
 
-
-*Figure 3: SPL search results displaying multiple failed logon attempts (Event ID 4625) from a single source IP*
-
-*index=wineventlog EventCode=4625*
-- Looks in your main index
-- Filters for Windows Security logs
-- EventCode = 4625 means failed login attempts
-
-*| stats count as failures by Account_Name*
-- Groups logs by username
-- Counts how many failed attempts each user has
-- Renames it to failures
-
-*| where failures > 10*
-- Only shows accounts with more than 10 failed logins
-
-*| sort - failures*
-- Sorts from highest to lowest failures
-
-*| fields Account_Name failures
-- Only displays:
-   - Username
-   - Number of failures
+This detection identifies accounts with a high number of failed login attempts, which may indicate a brute force attack
+This query filters failed login events (Event ID 4625), groups them by user, and counts the number of failures. Accounts exceeding a defined threshold are flagged as potential brute force targets
 
 
 # Behavioral Visualization
@@ -136,7 +116,7 @@ I verified the attack activity in multiple places:
 *Figure 7: Raw Windows Security logs successfully ingested into Splunk (WinEventLog:Security)*
 
 # Remediation
-After detecting the brute force activity, several response actions would be recommended to contain the attack and strengthen authentication security
+After detecting the brute force activity, the following actions can help reduce risk and prevent unauthroized access:
 
 # Immediate Reponse
 - Block the attacker IP address at the firewall or enpoint level to prevent further login attempts
