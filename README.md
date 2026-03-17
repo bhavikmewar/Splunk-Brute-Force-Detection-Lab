@@ -119,7 +119,7 @@ After detecting the brute force activity, the following actions can help reduce 
 - Review authentication logs for additional suspicious activity from the same source IP
 - Reset credentials for the targeted account to ensure the password has not been compromised
 
-# Security Hardening
+## Security Hardening
 - Implement account lockdown policies to automatically lock accounts after a defined number of failed login attempts
 - Enable Multi-Factor Authentication (MFA) for remote access services such as RDP
 - Restrict RDP access to trusted internal networks or require VPN access
