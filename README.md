@@ -1,6 +1,6 @@
 # Splunk Brute Force Detection Lab
 
-This project demonstrates how security monitoring can identify unauthorized access attempts and support risk detection in enterprise environments
+This project demonstrates how security monitoring can identify unauthorized access attempts and support risk detection in enterprise environments.
 
 In this lab, I built a small SIEM environment using Splunk to detect brute force login attempts against a Windows 10 machine.
 
@@ -42,10 +42,7 @@ Sourcetype: WinEventLog:Security
 # Attack Simulation
 
 
-To simulate brute force behavior, I generated repeated RDP login attempts from the Kali Linux VM using the xfreerdp3 tool.
-
-
-These attempts created multiple Event ID 4625 logs in Windows.
+To simulate brute force behavior, I generated repeated RDP login attempts from the Kali Linux VM using the xfreerdp3 tool. These attempts created multiple Event ID 4625 logs in Windows.
 
 
 RDP kali command used:
@@ -57,9 +54,7 @@ To simulate brute force behavior, I generated repeated RDP login attempts from t
 
 # Detection 1 - Multiple Failed Logins
 
-
 The first detection identifies repeated failed login attempts.
-
 
 This helped confirm:
 - Logs were being ingested correctly
@@ -70,6 +65,7 @@ This helped confirm:
 # SPL Brute Force Detection
 ![Brute Force Detection](images/detectionquery.png)
 
+*Figure 3: SPL query identifying accounts with excessive failed login attempts (Event ID 4625)*
 This detection identifies accounts with a high number of failed login attempts, which may indicate a brute force attack
 
 This query filters failed login events (Event ID 4625), groups them by user, and counts the number of failures. Accounts exceeding a defined threshold are flagged as potential brute force targets
@@ -120,14 +116,14 @@ After detecting the brute force activity, the following actions can help reduce 
 - Reset credentials for the targeted account to ensure the password has not been compromised
 
 ## Security Hardening
-- Implement account lockdown policies to automatically lock accounts after a defined number of failed login attempts
+- Implement account lockout policies to automatically lock accounts after a defined number of failed login attempts
 - Enable Multi-Factor Authentication (MFA) for remote access services such as RDP
 - Restrict RDP access to trusted internal networks or require VPN access
 - Disable unnecessary remote services to reduce attack surface
 
 ## Monitoring Improvements
 - Configure Splunk alerts to trigger when excessive failed logon attempts (Event ID 4625) occur within a short time window
-- Build dashboard to monitor authentication patterns and highlight abnormal login behavior
+- Build a dashboard to monitor authentication patterns and highlight abnormal login behavior
 - Create correlation searches that detect brute force patterns across multiple accounts or systems
 
 # What I learned
