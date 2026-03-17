@@ -19,7 +19,7 @@ The goal was to understand how brute force attacks appear in logs and how a SOC 
   Log Flow:
 Windows Security Logs -> Splunk Universal Forwarder -> Splunk Server (Port 9997) -> Detection Searches -> Alerts + Dashboard
 
-Logs from Windows 10 system were forwarded to Splunk using the Universal Forwarder for analyis
+Logs from the Windows 10 system were forwarded to Splunk using the Universal Forwarder for analysis
 
 # Lab Architecture Diagram
 ![Splunk Lab Architecture](images/architecture.png)
@@ -31,8 +31,6 @@ Log Source: Windows 10 Security Event Logs
 Forwarder: Splunk Universal Forwarder
 Index: wineventlog
 Sourcetype: WinEventLog:Security
-
-*This lab uses Windows Security Events Logs as the primary data source for monitoring authentication activity. These logs are forwarded from the Windows 10 machine to the Splunk Server using the Splunk Universal Forwarder, where they can be analyzed for suspicous behaviro such as repeated failed login attemps*
 
 # Key Event IDs Monitored
 - 4624 - Successful Logon
@@ -55,11 +53,7 @@ RDP kali command used:
 
 *Figure 2: Repeated RDP authentication attempts generated from the Kali Linux VM to simulate brute force behavior*
 
-*I used xfreerdp3 from Kali Linux to attempt a Remote Desktop Protocol (RDP) connection to target a windows machine.* 
-- /v: - the target IP address
-- /u: - a username
-- Then manually entered a wrong password when prompted
-*The system attempted to authenticate using Kerberos (port 88)
+To simulate brute force behavior, I generated repeated RDP login attempts from the Kali Linux VM using xfreerdp3. These attempts created multiple Event ID 4625 logs on the Windows system.
 
 # Detection 1 - Multiple Failed Logins
 
@@ -77,6 +71,7 @@ This helped confirm:
 ![Brute Force Detection](images/detectionquery.png)
 
 This detection identifies accounts with a high number of failed login attempts, which may indicate a brute force attack
+
 This query filters failed login events (Event ID 4625), groups them by user, and counts the number of failures. Accounts exceeding a defined threshold are flagged as potential brute force targets
 
 
@@ -118,7 +113,7 @@ I verified the attack activity in multiple places:
 # Remediation
 After detecting the brute force activity, the following actions can help reduce risk and prevent unauthroized access:
 
-# Immediate Reponse
+## Immediate Reponse
 - Block the attacker IP address at the firewall or enpoint level to prevent further login attempts
 - Temporarily disable or lock the targeted user account if repeated authentication failures occur
 - Review authentication logs for additional suspicious activity from the same source IP
