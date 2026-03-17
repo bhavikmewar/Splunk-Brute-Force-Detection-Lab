@@ -37,7 +37,7 @@ Sourcetype: WinEventLog:Security
 - 4625 - Failed Logon
 - 4672 - Special privileges assigned to new logon
 
-*Security analysts monitor these events to detect suspicous authentication behavior. A large number of Event ID 4625 failures may indicate a brute force password attack*
+*Security analysts monitor these events to detect suspicious authentication behavior. A large number of Event ID 4625 failures may indicate a brute force password attack*
 
 # Attack Simulation
 
@@ -53,7 +53,7 @@ RDP kali command used:
 
 *Figure 2: Repeated RDP authentication attempts generated from the Kali Linux VM to simulate brute force behavior*
 
-To simulate brute force behavior, I generated repeated RDP login attempts from the Kali Linux VM using xfreerdp3. These attempts created multiple Event ID 4625 logs on the Windows system.
+To simulate brute force behavior, I generated repeated RDP login attempts from the Kali Linux VM using xfreerdp3 command. These attempts created multiple Event ID 4625 logs on the Windows system.
 
 # Detection 1 - Multiple Failed Logins
 
@@ -111,10 +111,10 @@ I verified the attack activity in multiple places:
 *Figure 7: Raw Windows Security logs successfully ingested into Splunk (WinEventLog:Security)*
 
 # Remediation
-After detecting the brute force activity, the following actions can help reduce risk and prevent unauthroized access:
+After detecting the brute force activity, the following actions can help reduce risk and prevent unauthorized access:
 
-## Immediate Reponse
-- Block the attacker IP address at the firewall or enpoint level to prevent further login attempts
+## Immediate Response
+- Block the attacker IP address at the firewall or endpoint level to prevent further login attempts
 - Temporarily disable or lock the targeted user account if repeated authentication failures occur
 - Review authentication logs for additional suspicious activity from the same source IP
 - Reset credentials for the targeted account to ensure the password has not been compromised
@@ -137,5 +137,5 @@ After detecting the brute force activity, the following actions can help reduce 
 - How brute force activity appears in logs
 
 # What to do next
-- Detection 3: Detect privilage escalation
+- Detection 3: Detect privilege escalation
 
