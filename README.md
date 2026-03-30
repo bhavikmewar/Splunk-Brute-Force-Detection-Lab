@@ -44,8 +44,8 @@ Sourcetype: WinEventLog:Security
 
 To simulate brute force behavior, I generated repeated RDP login attempts from the Kali Linux VM using the xfreerdp3 tool. These attempts created multiple Event ID 4625 logs in Windows.
 
-
 RDP kali command used:
+
 ![RDP kali command used](images/kalirdpcommand.png)
 
 *Figure 2: Repeated RDP authentication attempts generated from the Kali Linux VM to simulate brute force behavior*
